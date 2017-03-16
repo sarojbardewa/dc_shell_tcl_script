@@ -10,7 +10,7 @@ proc ureka_premium args {
 		#echo sizeof_collection [get_attribute $path startpoint]
 		set end [get_attribute $path endpoint]
 		set path_end [get_attribute $end full_name]
-		echo "-------------------------------------------------------------"
+		#echo "-------------------------------------------------------------"
 		#puts "**Path between : $path_start - $path_end**"
         	set all_points [get_attribute $path points]
 		foreach_in_collection point $all_points {
@@ -33,7 +33,8 @@ proc ureka_premium args {
 					     set cellFound 1
 					     break
 					    #echo [format "%10s %10s" $name_cell $newcount] 
-					} else { set cellFound 0 }}
+					} else { set cellFound 0 }} 
+					if {$cellFound==0} { echo "Fire" }
 					}}}} 
 	foreach { name_cell count} [array get count_cell] { echo [format "%10s %10s" $name_cell $count] }}
 			

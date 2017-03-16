@@ -33,7 +33,8 @@ proc ureka_premium args {
 					     set cellFound 1
 					     break
 					    #echo [format "%10s %10s" $name_cell $newcount] 
-					} else { set cellFound 0 }}
+					} else { set cellFound 0 }} 
+					if {$cellFound==0} { set count_cell($cell) 1  }
 					}}}} 
 	foreach { name_cell count} [array get count_cell] { echo [format "%10s %10s" $name_cell $count] }}
 			
