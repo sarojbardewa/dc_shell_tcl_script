@@ -36,7 +36,7 @@ proc ureka_premium args {
 					} else { set cellFound 0 }} 
 					if {$cellFound==0} { set count_cell($cell) 1  }
 					}}}} 
-	foreach { name_cell count} [array get count_cell] { echo [format "%10s %10s" $name_cell $count] }}
+foreach { name_cell count} [array get count_cell]{ echo [format "%10s %10s" $name_cell $count] }}
 			
 
 #Define my arguments
