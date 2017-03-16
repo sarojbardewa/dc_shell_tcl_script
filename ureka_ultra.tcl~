@@ -17,17 +17,20 @@ proc ureka_ultra args {
 			set name [get_attribute $start full_name]	
 			set cell_name [get_cells -of_object "$name"]
 			set cell [get_attribute $cell_name full_name]
-			echo [format "%10s" $cell]
-			set count_cell($cell_name) 1 
-			#set t_cell [get_attribute $cell is_combinational]
-			#only display combinational cells
-			#if {$t_cell=="true"} {
-			#echo [format "%10s" $cell] }						
-	        } foreach { name_cell count } [array get count_cell] {
-	          puts "Cell_name : $name_cell count: $count" }
-       } 
-	
-}
+			#echo [format "%10s" $cell]
+			set t_cell [get_attribute $cell is_combinational]
+			#only if the gate is a combinational cell
+			if {$t_cell=="true"} {	
+				if {[array size count_cell]==0} {
+				 set count_cell($cell) 1
+				 set count 1
+				 echo [format "%10s %10s" $cell $count ]		
+				} else { foreach { name_cell count} [array get count_cell] {
+	        		        if {[string match $name_cell $cell]} {
+					     set newcount [expr 1 + $count]
+					     set count_cell($cell) $newcount
+					    echo [format "%10s %10s" $name_cell $newcount] 
+					} else { set count_cell($cell) 1 }}}}}}}
 
 #Define my arguments
 define_proc_attributes ureka_ultra \
